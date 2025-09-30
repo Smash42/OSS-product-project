@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{{url_for('static', filename = 'reset.css' )}}" rel="stylesheet">
+    <link href="{{url_for('static', filename = 'style.css' )}}" rel="stylesheet">
+</head>
+<body >
+    {% for message in get_flashed_messages() %}
+    <div class="flash"> {{message}}</div>
+    {% endfor %}
+    <header>
+        <a href="{{url_for('home')}}"> Home </a>
+        <a href="{{url_for('browse')}}"> Browse </a>
+        <a href="{{url_for('cart')}}"> Cart</a>
+
+    </header>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

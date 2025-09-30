@@ -1,0 +1,14 @@
+header {
+    background-color: darkgreen;
+    color: white;
+    padding: 5px;
+    font-size: medium;
+}
+
+header a {
+    color: white
+}
+
+a, a:hover {
+    color: navy;
+}

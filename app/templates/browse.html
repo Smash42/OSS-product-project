@@ -1,0 +1,22 @@
+
+
+{% extends "base.html" %}
+{% block title %} Browse {% endblock %}
+
+{% block content %}
+<h1> Browse </h1>
+<p></p>
+
+
+  {% for product in products %}
+  
+    <h3><a href="{{url_for ('product_detail', product_id=product.product_id) }}">{{product.name }}</a></h3> 
+    <p>{{ product.description }}</p>
+    <p> ${{ product.price }}</p>
+ 
+  {% endfor %}
+
+
+
+{% endblock %}
+

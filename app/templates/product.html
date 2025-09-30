@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% block title %} {{product.name}} {% endblock %}
+
+{% block content %}
+
+  <h1> {{product.name}} </h1>
+    <p>{{ product.description }}</p>
+    <p> ${{ product.price }}</p>
+  
+<br>
+    <button type="submit"> Add to Cart</button>
+    <br>
+    <br>
+
+    <a style="color: white; background-color: rgb(141, 16, 0);" href="{{ url_for('delete_product', product_id=product.product_id) }}">X Delete {{product.name}}</a><br>
+    <a href="{{ url_for('edit_product', product_id=product.product_id) }}">Edit Product</a>
+
+
+{% endblock %}
