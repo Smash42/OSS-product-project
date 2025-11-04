@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+{% block title %} Register User {% endblock %}
+
+{% block content %}
+
+<h1> Register User </h1>
+<p></p>
+    <form action="{{url_for('auth.register')}}" method="post">
+        <label for="name"> Diplay Name: </label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="email"> Email: </label>
+        <input type="text" id="email" name="email" required>
+        <br>
+        <label for="password"> Password: </label>
+        <input type="password" id="password" name="password" style="width: 100px;" required>
+        <br>
+        <label for="verifypassword"> Verify Password: </label>
+        <input type="password" id="verifypassword" name="verifypassword" style="width: 100px;" required>
+        <br>
+        <br>
+        <input type="submit" value="Register User">
+    </form>
+{% endblock %}
+

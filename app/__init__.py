@@ -1,7 +1,8 @@
 
 import os
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, flash, g, redirect, render_template, request, session, url_for
 
+from app.auth import permission_required
 from app.models.product import ProductItem
 
 def page_not_found(error):
@@ -26,9 +27,14 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
 
+    #Login Auth blueprint
+    from . import auth
+    app.register_blueprint(auth.bp)
+
     #Adds route to the app at /home
     @app.route('/')
     def home():
+
         return render_template('home.html')
     
     @app.route('/browse')
@@ -45,8 +51,8 @@ def create_app(test_config=None):
         return render_template('product.html', product=info)
     
     @app.route('/product/add', methods=['GET', 'POST'])
+    @permission_required('product.add')
     def add_product():
-
         if request.method == 'POST':
             hasError= False
             name = request.form['name'].strip()
@@ -68,6 +74,7 @@ def create_app(test_config=None):
         return render_template('add_product.html')
     
     @app.route('/product/<int:product_id>/edit', methods=['GET', 'POST'])
+    @permission_required('product.edit')
     def edit_product(product_id):
         info = ProductItem.FromDB(product_id)
         if info is None:
@@ -96,6 +103,7 @@ def create_app(test_config=None):
         return render_template('edit_product.html', product = info)
     
     @app.route('/product/<int:product_id>/delete', methods=['GET', 'POST'])
+    @permission_required('product.delete')
     def delete_product(product_id):
         info = ProductItem.FromDB(product_id)
         if info is None:
