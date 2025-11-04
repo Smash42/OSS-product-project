@@ -108,7 +108,7 @@ def permission_required(permission : str ):
             if g.user == None:
                 flash("Error: You must be logged in to access this page")
                 return redirect(url_for('auth.login'))
-            if g.user.HasPermission(permission):
+            if not g.user.HasPermission(permission):
                 flash("Warning: You do not have permission to access that page")
                 return redirect(url_for('auth.login'))
             return view(**kwargs)
