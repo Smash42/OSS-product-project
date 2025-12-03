@@ -9,7 +9,10 @@
     <p> ${{ product.price }}</p>
   
 <br>
-    <button type="submit"> Add to Cart</button>
+  <form action="{{ url_for('add_to_cart', product_id=product.product_id) }}" method="post">
+    <button type="submit">Add to Cart</button>
+  </form>
+
     <br>
     <br>
   {% if g.user != None and g.user.HasPermission('product.delete') %}

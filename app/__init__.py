@@ -116,10 +116,21 @@ def create_app(test_config=None):
             pass          
         return render_template('delete_product.html', product=info)
     
+    @app.route('/add_to_cart/<int:product_id>', methods=['POST'])
+    def add_to_cart(product_id):
+        cart = session.get('cart', [])
+        # Add item to cart
+        cart.append(product_id)
+
+        #save updated cart in session
+        session['cart'] = cart
+        flash("The product has been added to your cart!")
+        return redirect(url_for('product_detail', product_id=product_id))
+
     @app.route('/cart')
     def cart():
         cart = session.get('cart', [])
         products = [ProductItem.FromDB(pid) for pid in cart]
-        return render_template('cart.html')
+        return render_template('cart.html', products=products)
 
     return app
