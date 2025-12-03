@@ -18,8 +18,12 @@ CREATE TABLE users (
     is_critic INTEGER NOT NULL DEFAULT 0 CHECK(is_critic IN (0,1)),
     email TEXT NOT NULL,
     passhash TEXT NOT NULL,
-    role INTEGER DEFAULT 2
+    role INTEGER DEFAULT 1
 );
+
+INSERT INTO users (display_name, is_critic, email, passhash, role) VALUES
+('Admin', 0, 'admin2@test.com', 'hashedpassword1', 2);
+
 
 CREATE TABLE roles (
     roleid INTEGER PRIMARY KEY, 
