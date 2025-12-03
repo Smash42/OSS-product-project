@@ -5,8 +5,16 @@
 
 {% block content %}
 <h1> Home </h1>
-<p> Welcome to Tierney's Products</p>
-<p> Please Go to the browse tab to see items that are up for purchase</p>
+<p> Welcome to Tierney's Products. Please Go to Browse tab to see items that are up for purchase.</p>
+
+<p>
+    <br>
+  {% if g.user != None and g.user.HasPermission('product.add') %}
+  You can also easily add products to the store from the home page as well!
+   <button style="color: rgb(12, 12, 12); background-color: rgb(252, 255, 98);" ><a   href="{{ url_for('add_product') }}">Add Product</a></button> 
+  {% endif %}
+</p>
+<br>
 <p> Login for a more personalized experience! </p>
 {% endblock %}
 
