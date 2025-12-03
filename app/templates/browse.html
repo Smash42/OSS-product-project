@@ -7,6 +7,12 @@
 <h1> Browse </h1>
 <p></p>
 
+<p>
+  {% if g.user != None and g.user.HasPermission('product.add') %}
+   <button style="color: rgb(12, 12, 12); background-color: rgb(252, 255, 98);" ><a   href="{{ url_for('add_product') }}">Add Product</a></button> 
+  {% endif %}
+</p>
+
 
   {% for product in products %}
   

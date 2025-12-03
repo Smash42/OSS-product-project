@@ -7,4 +7,16 @@
 <p> Cart is empty</p>
 <p></p>
 
+{% if products %}
+  <ul>
+    {% for product in products %}
+      <li>
+        <h3>{{ product.name }}</h3> - ${{ product.price }}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Your cart is empty.</p>
+{% endif %}
+
 {% endblock %}

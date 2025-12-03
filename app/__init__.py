@@ -118,6 +118,8 @@ def create_app(test_config=None):
     
     @app.route('/cart')
     def cart():
+        cart = session.get('cart', [])
+        products = [ProductItem.FromDB(pid) for pid in cart]
         return render_template('cart.html')
 
     return app
