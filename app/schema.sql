@@ -1,3 +1,5 @@
+
+
 DROP TABLE IF EXISTS role_permissions;
 DROP TABLE IF EXISTS permissions;
 DROP TABLE IF EXISTS roles;
@@ -21,9 +23,8 @@ CREATE TABLE users (
     role INTEGER DEFAULT 1
 );
 
-INSERT INTO users (display_name, is_critic, email, passhash, role) VALUES
-('Admin', 0, 'admin2@test.com', 'hashedpassword1', 2);
-
+INSERT INTO users (userid, display_name, is_critic, email, passhash, role) VALUES
+(1, 'Administrator', 0, 'admin@test.com', 'scrypt:32768:8:1$w5cBofDULUebay2d$3a5f81be486a409c8614ba8dfb96c105bcc90cb023e0c9d14f4447eaaf032eb6b8e92db9751541333b22e3ab76a549fb86572b3d87eb8c709d45bb98e00c8717', 2);
 
 CREATE TABLE roles (
     roleid INTEGER PRIMARY KEY, 
@@ -44,6 +45,8 @@ CREATE TABLE role_permissions (
     PRIMARY KEY (roleid, permissionid)
 );
 
+
+
 INSERT INTO roles (roleid, name, description) VALUES
 (1, 'user', 'Users have no permissions'),
 (2, 'moderator', 'Moderator can edit products');
@@ -62,3 +65,8 @@ INSERT INTO products (product_id, name, description, price) VALUES
 (3, 'Bose Headphones', 'On ear headphones with noise cancelling, hear through, and bluetooth technology', 21099),
 (4, '4K Monitor', '27-inch 4K UHD monitor with ultra-thin bezels and HDR support.', 29999),
 (5, 'Duke NFL Football', 'The official football of the NFL', 15999);
+
+UPDATE users
+SET role_id = 2 
+WHERE user_id = 1;
+

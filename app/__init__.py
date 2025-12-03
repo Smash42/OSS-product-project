@@ -2,6 +2,7 @@
 import os
 from flask import Flask, flash, g, redirect, render_template, request, session, url_for
 
+
 from app.auth import permission_required
 from app.models.product import ProductItem
 
